@@ -2,13 +2,19 @@
 
 Flutter ile geliştirilmiş **Apple ürünleri** kataloğu mobil uygulaması. Kullanıcılar ürünleri listeleyebilir, arama yapabilir, kategoriye göre filtreleyebilir, favorileyebilir ve sepete ekleyebilir.
 
+Bu proje, Flutter Günlük Eğitim programı kapsamında widget yapısı, sayfa geçişleri, temel UI tasarımı, veri modeli oluşturma ve proje klasörleme mantığını uygulamak amacıyla geliştirilmiştir.
+
 ---
 
 ## 📸 Ekran Görüntüleri
 
-| Ana Sayfa | Arama | Ürün Detayı | Sepet |
-|-----------|-------|-------------|-------|
-| ![Ana Sayfa](screenshots/01_ana_sayfa.png) | ![Arama](screenshots/02_arama.png) | ![Detay](screenshots/04_urun_detay.png) | ![Sepet](screenshots/06_sepet.png) |
+| Ana Sayfa | Arama | Kategori Filtresi | Ürün Detayı |
+|-----------|-------|-------------------|-------------|
+| ![Ana Sayfa](screenshots/01_ana_sayfa.png) | ![Arama](screenshots/02_arama.png) | ![Kategori](screenshots/03_kategori_aksesuar.png) | ![Detay](screenshots/04_urun_detay.png) |
+
+| Sepete Eklendi | Sepet | Favoriler | Final |
+|----------------|-------|-----------|-------|
+| ![Sepete Eklendi](screenshots/05_sepete_eklendi.png) | ![Sepet](screenshots/06_sepet.png) | ![Favoriler](screenshots/07_favoriler.png) | ![Final](screenshots/08_ana_sayfa_final.png) |
 
 ---
 
@@ -25,8 +31,8 @@ Flutter ile geliştirilmiş **Apple ürünleri** kataloğu mobil uygulaması. Ku
 
 ### Ürün Detayı
 - Tam ekran ürün görseli
-- Ürün adı, fiyatı ve açıklaması
-- **Sepete Ekle** butonu — eklenince rengi yeşile döner
+- Ürün adı, fiyatı, kategorisi ve açıklaması
+- **Sepete Ekle** butonu — eklenince rengi yeşile döner, SnackBar bildirimi gösterilir
 - AppBar'dan **favorileme** (kalp ikonu)
 
 ### Sepet
@@ -36,14 +42,60 @@ Flutter ile geliştirilmiş **Apple ürünleri** kataloğu mobil uygulaması. Ku
 - **Sipariş Onay** diyaloğu
 
 ### Favoriler
-- Kalp ikonuna dokunarak ürün favorilenir
-- AppBar'daki kalp ikonunda badge sayacı
+- Hem ürün kartında hem AppBar'da kalp ikonuna dokunarak favorileme
+- AppBar'daki kalp ve sepet ikonlarında **badge sayacı**
 - Ayrı **Favoriler ekranı** — favorilenen ürünler listelenir
 - Favori ekrandan direkt sepete ekleme
 
 ---
 
-## 🏗️ Proje Yapısı
+## 🏗️ Veri Modeli ve Sayfa Geçişleri
+
+### Ürün Veri Modeli
+
+`Product` model sınıfı (`lib/models/product.dart`), temel ürün bilgilerini barındırır:
+
+```dart
+class Product {
+  final int id;
+  final String name;
+  final String description;
+  final double price;
+  final String image;
+  final String category;
+
+  Product({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.image,
+    required this.category,
+  });
+}
+```
+
+### Sayfalar Arası Geçiş (Navigator)
+
+Sayfa geçişleri `Navigator.push` ile `MaterialPageRoute` kullanılarak yapılır. Kullanıcı bir ürün kartına dokunduğunda seçilen `Product` nesnesi, favori durumu ve callback fonksiyonları birlikte `DetailScreen`'e iletilir:
+
+```dart
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (_) => DetailScreen(
+      product: product,
+      isFavorite: isFav,
+      onAddToCart: () => addToCart(product),
+      onToggleFavorite: () => toggleFavorite(product.id),
+    ),
+  ),
+);
+```
+
+---
+
+## 🗂️ Proje Yapısı
 
 ```
 mini_katalog/
@@ -78,12 +130,13 @@ mini_katalog/
 |-----------|----------|
 | Flutter 3.x | UI framework |
 | Dart 3.x | Programlama dili |
-| Material Design 3 | Tasarım sistemi |
+| Material Design 3 | Tasarım sistemi (DeepPurple tema) |
 | StatefulWidget / setState | Durum yönetimi |
-| Navigator | Sayfa geçişleri |
+| Navigator / MaterialPageRoute | Sayfa geçişleri ve callback aktarımı |
 | GridView.builder | Ürün ızgarası |
 | ListView.builder | Sepet listesi |
 | Dismissible | Kaydırarak silme |
+| Badge | AppBar ikon sayaçları |
 | Image.asset | Yerel görsel yükleme |
 
 ---
@@ -92,29 +145,41 @@ mini_katalog/
 
 | Ekran | Widget Türü | Açıklama |
 |-------|-------------|----------|
-| `HomeScreen` | StatefulWidget | Ürün grid, arama, kategori filtresi, badge'li ikonlar |
-| `DetailScreen` | StatefulWidget | Ürün detayı, favorileme, sepete ekleme animasyonu |
+| `HomeScreen` | StatefulWidget | Ürün grid, arama, kategori filtresi, badge'li ikon çifti |
+| `DetailScreen` | StatefulWidget | Ürün detayı, favorileme, sepete ekleme + SnackBar |
 | `CartScreen` | StatefulWidget | Ürün listesi, swipe-to-delete, sipariş onayı |
-| `FavoritesScreen` | StatefulWidget | Favori ürünler, anlık kaldırma |
+| `FavoritesScreen` | StatefulWidget | Favori ürünler, anlık kaldırma, sepete ekleme |
 
 ---
 
 ## 🚀 Kurulum ve Çalıştırma
 
 ### Gereksinimler
+
 - Flutter SDK 3.0+
 - Dart SDK 3.0+
+- Android Studio (Android Emulator için) veya bağlı bir Android cihaz
 
 ### Adımlar
 
 ```bash
-# 1. Bağımlılıkları yükle
+# 1. Repoyu klonla
+git clone https://github.com/Sadecenesc/mini_katalog.git
+cd mini_katalog
+
+# 2. Bağımlılıkları yükle
 flutter pub get
 
-# 2. Windows'ta çalıştır
+# 3. Bağlı cihaz/emülatörleri listele
+flutter devices
+
+# 4. Android Emulator veya bağlı Android cihazda çalıştır
+flutter run -d android
+
+# 5. (Alternatif) Windows'ta çalıştır
 flutter run -d windows
 
-# 3. Web tarayıcısında çalıştır
+# 6. (Alternatif) Web tarayıcısında çalıştır
 flutter run -d chrome
 ```
 
