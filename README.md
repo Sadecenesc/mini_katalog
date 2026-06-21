@@ -10,11 +10,11 @@ Bu proje, Flutter Günlük Eğitim programı kapsamında widget yapısı, sayfa 
 
 | Ana Sayfa | Arama | Kategori | Ürün Detayı |
 |---|---|---|---|
-| [![Ana Sayfa](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/01_ana_sayfa.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/01_ana_sayfa.png) | [![Arama](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/02_arama.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/02_arama.png) | [![Kategori](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/03_kategori_aksesuar.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/03_kategori_aksesuar.png) | [![Detay](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/04_urun_detay.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/04_urun_detay.png) |
+| ![Ana Sayfa](screenshots/01_ana_sayfa.png) | ![Arama](screenshots/02_arama.png) | ![Kategori](screenshots/03_kategori_aksesuar.png) | ![Detay](screenshots/04_urun_detay.png) |
 
 | Sepete Eklendi | Sepet | Favoriler | Final |
 |---|---|---|---|
-| [![Sepete Eklendi](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/05_sepete_eklendi.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/05_sepete_eklendi.png) | [![Sepet](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/06_sepet.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/06_sepet.png) | [![Favoriler](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/07_favoriler.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/07_favoriler.png) | [![Final](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/08_ana_sayfa_final.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/08_ana_sayfa_final.png) |
+| ![Sepete Eklendi](screenshots/05_sepete_eklendi.png) | ![Sepet](screenshots/06_sepet.png) | ![Favoriler](screenshots/07_favoriler.png) | ![Final](screenshots/08_ana_sayfa_final.png) |
 
 ---
 
