@@ -8,13 +8,13 @@ Bu proje, Flutter Günlük Eğitim programı kapsamında widget yapısı, sayfa 
 
 ## 📸 Ekran Görüntüleri
 
-| Ana Sayfa | Arama | Kategori Filtresi | Ürün Detayı |
-|-----------|-------|-------------------|-------------|
-| ![Ana Sayfa](screenshots/01_ana_sayfa.png) | ![Arama](screenshots/02_arama.png) | ![Kategori](screenshots/03_kategori_aksesuar.png) | ![Detay](screenshots/04_urun_detay.png) |
+| Ana Sayfa | Arama | Kategori | Ürün Detayı |
+|---|---|---|---|
+| [![Ana Sayfa](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/01_ana_sayfa.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/01_ana_sayfa.png) | [![Arama](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/02_arama.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/02_arama.png) | [![Kategori](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/03_kategori_aksesuar.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/03_kategori_aksesuar.png) | [![Detay](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/04_urun_detay.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/04_urun_detay.png) |
 
 | Sepete Eklendi | Sepet | Favoriler | Final |
-|----------------|-------|-----------|-------|
-| ![Sepete Eklendi](screenshots/05_sepete_eklendi.png) | ![Sepet](screenshots/06_sepet.png) | ![Favoriler](screenshots/07_favoriler.png) | ![Final](screenshots/08_ana_sayfa_final.png) |
+|---|---|---|---|
+| [![Sepete Eklendi](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/05_sepete_eklendi.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/05_sepete_eklendi.png) | [![Sepet](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/06_sepet.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/06_sepet.png) | [![Favoriler](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/07_favoriler.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/07_favoriler.png) | [![Final](https://github.com/Sadecenesc/mini_katalog/raw/master/screenshots/08_ana_sayfa_final.png)](/Sadecenesc/mini_katalog/blob/master/screenshots/08_ana_sayfa_final.png) |
 
 ---
 
@@ -53,7 +53,10 @@ Bu proje, Flutter Günlük Eğitim programı kapsamında widget yapısı, sayfa 
 
 ### Ürün Veri Modeli
 
-`Product` model sınıfı (`lib/models/product.dart`), temel ürün bilgilerini barındırır:
+`Product` model sınıfı (`lib/models/product.dart`), eğitimde işlenen nesne
+yönelimli programlama mantığına uygun olarak tasarlanmıştır. `id`, `name`,
+`description`, `price`, `image` ve `category` alanlarını barındırır; bu yapı
+modeli ileride bir API'ye bağlanmaya hazır hale getirir.
 
 ```dart
 class Product {
@@ -77,7 +80,10 @@ class Product {
 
 ### Sayfalar Arası Geçiş (Navigator)
 
-Sayfa geçişleri `Navigator.push` ile `MaterialPageRoute` kullanılarak yapılır. Kullanıcı bir ürün kartına dokunduğunda seçilen `Product` nesnesi, favori durumu ve callback fonksiyonları birlikte `DetailScreen`'e iletilir:
+Sayfa geçişleri `Navigator.push` ile `MaterialPageRoute` kullanılarak
+yapılır. Kullanıcı bir ürün kartına dokunduğunda seçilen `Product`
+nesnesi, favori durumu ve callback fonksiyonları birlikte `DetailScreen`'e
+iletilir; böylece durum yönetimi `HomeScreen`'de merkezi olarak tutulur:
 
 ```dart
 Navigator.push(
@@ -127,10 +133,10 @@ mini_katalog/
 ## 🛠️ Kullanılan Teknolojiler
 
 | Teknoloji | Açıklama |
-|-----------|----------|
+|---|---|
 | Flutter 3.x | UI framework |
 | Dart 3.x | Programlama dili |
-| Material Design 3 | Tasarım sistemi (DeepPurple tema) |
+| Material Design 3 | Tasarım sistemi |
 | StatefulWidget / setState | Durum yönetimi |
 | Navigator / MaterialPageRoute | Sayfa geçişleri ve callback aktarımı |
 | GridView.builder | Ürün ızgarası |
@@ -139,12 +145,15 @@ mini_katalog/
 | Badge | AppBar ikon sayaçları |
 | Image.asset | Yerel görsel yükleme |
 
+> Not: Tablodaki Flutter sürümünü kendi ortamında `flutter --version`
+> komutunu çalıştırarak doğrula ve gerekirse güncelle.
+
 ---
 
 ## 📱 Ekranlar
 
 | Ekran | Widget Türü | Açıklama |
-|-------|-------------|----------|
+|---|---|---|
 | `HomeScreen` | StatefulWidget | Ürün grid, arama, kategori filtresi, badge'li ikon çifti |
 | `DetailScreen` | StatefulWidget | Ürün detayı, favorileme, sepete ekleme + SnackBar |
 | `CartScreen` | StatefulWidget | Ürün listesi, swipe-to-delete, sipariş onayı |
@@ -188,7 +197,7 @@ flutter run -d chrome
 ## 📦 Ürünler
 
 | # | Ürün | Kategori | Fiyat |
-|---|------|----------|-------|
+|---|---|---|---|
 | 1 | iPhone 15 Pro | Telefon | $999.00 |
 | 2 | MacBook Pro 14" | Bilgisayar | $1999.00 |
 | 3 | iPad Air | Tablet | $599.00 |
